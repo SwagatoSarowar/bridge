@@ -5,7 +5,7 @@ import Registration from "./pages/Registration";
 import "react-toastify/dist/ReactToastify.css";
 import ForgotPassword from "./pages/ForgotPassword";
 import Profile from "./pages/Profile";
-import Users from "./pages/Users";
+import OtherUsers from "./pages/OtherUsers";
 
 function App() {
   const router = createBrowserRouter([
@@ -31,7 +31,7 @@ function App() {
     },
     {
       path: "/users",
-      element: <Users />,
+      element: <OtherUsers />,
     },
   ]);
   return <RouterProvider router={router} />;

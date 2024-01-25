@@ -19,7 +19,7 @@ function ProfileImgEdit({ onShowProfileImgEdit }) {
   const db = getDatabase();
   const dispatch = useDispatch();
 
-  const currentUserInfo = useSelector((state) => state.user.userInfo);
+  const currentUserData = useSelector((state) => state.user.userInfo);
 
   const [image, setImage] = useState("");
 
@@ -46,28 +46,28 @@ function ProfileImgEdit({ onShowProfileImgEdit }) {
         .getCroppedCanvas()
         .toDataURL();
       uploadString(
-        ref(storage, "profileImg/" + currentUserInfo.uid),
+        ref(storage, "profileImg/" + currentUserData.uid),
         message,
         "data_url",
       ).then(() => {
-        getDownloadURL(ref(storage, "profileImg/" + currentUserInfo.uid)).then(
+        getDownloadURL(ref(storage, "profileImg/" + currentUserData.uid)).then(
           (downloadURL) => {
             updateProfile(auth.currentUser, {
               photoURL: downloadURL,
             }).then(() =>
-              update(dref(db, "users/" + currentUserInfo.uid), {
+              update(dref(db, "users/" + currentUserData.uid), {
                 profileImg: downloadURL,
               }).then(() => {
                 dispatch(
                   userLoginInfo({
-                    ...currentUserInfo,
+                    ...currentUserData,
                     photoURL: downloadURL,
                   }),
                 );
                 localStorage.setItem(
                   "userLoginInfo",
                   JSON.stringify({
-                    ...currentUserInfo,
+                    ...currentUserData,
                     photoURL: downloadURL,
                   }),
                 );

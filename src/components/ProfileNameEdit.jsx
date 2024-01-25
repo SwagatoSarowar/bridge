@@ -8,7 +8,7 @@ function ProfileNameEdit({ profileName, onShowNameEdit }) {
   const db = getDatabase();
   const auth = getAuth();
   const dispatch = useDispatch();
-  const currentUserInfo = useSelector((state) => state.user.userInfo);
+  const currentUserData = useSelector((state) => state.user.userInfo);
 
   const [nameInput, setNameInput] = useState(profileName);
 
@@ -21,15 +21,15 @@ function ProfileNameEdit({ profileName, onShowNameEdit }) {
       displayName: nameInput,
     })
       .then(() =>
-        update(ref(db, "users/" + currentUserInfo.uid), {
+        update(ref(db, "users/" + currentUserData.uid), {
           username: nameInput,
         }),
       )
       .then(() => {
-        dispatch(userLoginInfo({ ...currentUserInfo, displayName: nameInput }));
+        dispatch(userLoginInfo({ ...currentUserData, displayName: nameInput }));
         localStorage.setItem(
           "userLoginInfo",
-          JSON.stringify({ ...currentUserInfo, displayName: nameInput }),
+          JSON.stringify({ ...currentUserData, displayName: nameInput }),
         );
         onShowNameEdit(false);
       });

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLoginInfo } from "../slices/userSlice";
-import Profile from "./Profile";
 import Navbar from "../components/Navbar";
 
 export default function Home() {

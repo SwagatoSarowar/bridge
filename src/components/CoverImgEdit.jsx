@@ -15,7 +15,7 @@ function CoverImgEdit({ onShowCoverImgEdit }) {
   const cropperRef = createRef();
   const db = getDatabase();
 
-  const currentUserInfo = useSelector((state) => state.user.userInfo);
+  const currentUserData = useSelector((state) => state.user.userInfo);
 
   const [image, setImage] = useState("");
 
@@ -42,13 +42,13 @@ function CoverImgEdit({ onShowCoverImgEdit }) {
         .getCroppedCanvas()
         .toDataURL();
       uploadString(
-        ref(storage, "coverImg/" + currentUserInfo.uid),
+        ref(storage, "coverImg/" + currentUserData.uid),
         message,
         "data_url",
       ).then(() => {
-        getDownloadURL(ref(storage, "coverImg/" + currentUserInfo.uid)).then(
+        getDownloadURL(ref(storage, "coverImg/" + currentUserData.uid)).then(
           (downloadURL) => {
-            update(dref(db, "users/" + currentUserInfo.uid), {
+            update(dref(db, "users/" + currentUserData.uid), {
               coverImg: downloadURL,
             }).then(() => onShowCoverImgEdit(false));
           },
