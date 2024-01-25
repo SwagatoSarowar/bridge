@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { GoHomeFill } from "react-icons/go";
 import { MdGroups } from "react-icons/md";
 import { useSelector } from "react-redux";
+import logo from "../assets/bridge-logo.png";
 
 const navbarLinks = [
   { linkTo: "/", icon: <GoHomeFill />, tooltipTxt: "Home" },
@@ -14,11 +15,16 @@ export default function Navbar() {
   return (
     <div className="sticky left-0 top-0 border-b border-white/20 bg-dark-300">
       <div className="flex items-center justify-between px-4 text-white">
-        {/* <picture>
-      <img src="" alt="" />
-    </picture> */}
-
-        <div>logo</div>
+        <div className="relative">
+          <Link to="/" className="peer flex items-center gap-x-1 font-bold">
+            <picture>
+              <img className="w-8 sm:w-10" src={logo} alt="profile image" />
+            </picture>
+          </Link>
+          <p className="absolute left-1/2 top-[120%] -translate-x-1/2 rounded-xl bg-slate-200 px-4 py-[2px] text-sm text-black opacity-0 peer-hover:opacity-100 peer-hover:duration-500">
+            Home
+          </p>
+        </div>
         <ul className="flex gap-x-2 text-xl leading-none text-white md:text-2xl">
           {navbarLinks.map((item, index) => (
             <NavItem key={index} data={item} />
