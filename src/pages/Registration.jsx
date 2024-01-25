@@ -119,7 +119,7 @@ export default function Registration() {
         transition={Zoom}
         autoClose={2500}
       />
-      <div className="rounded-lg bg-black/30 p-4 shadow-[16px_16px_20px_0_rgba(0,0,0,0.4)] backdrop-blur-lg md:p-16">
+      <div className="max-h-screen overflow-y-auto rounded-lg bg-black/30 p-4 shadow-[16px_16px_20px_0_rgba(0,0,0,0.4)] backdrop-blur-lg md:p-16">
         <h1 className="mb-5 text-center text-3xl font-light uppercase text-white md:text-5xl">
           Registration
         </h1>

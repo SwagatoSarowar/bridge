@@ -107,7 +107,7 @@ function User({
     <div className="flex gap-x-10 overflow-hidden rounded-lg border border-white/30 min-[500px]:mx-20 sm:mx-0 sm:block">
       <picture>
         <img
-          className="w-[125px] sm:w-full"
+          className="aspect-square w-[125px] sm:w-full"
           src={userData.profileImg}
           alt={`${userData.username} profile image`}
         />
@@ -116,24 +116,26 @@ function User({
         <h4 className="text-center text-xl font-semibold">
           {userData.username}
         </h4>
-        {friendReqsIdList.includes(currentUserData.uid + userData.userId) ? (
+        {friendReqsIdList?.includes(currentUserData.uid + userData.userId) ? (
           <p className="mt-2 select-none rounded-md text-center font-medium text-slate-400">
             Request Sent
           </p>
-        ) : friendReqsIdList.includes(userData.userId + currentUserData.uid) ? (
+        ) : friendReqsIdList?.includes(
+            userData.userId + currentUserData.uid,
+          ) ? (
           <p className="mt-2 select-none rounded-md text-center font-medium text-slate-400">
             Request Received
           </p>
-        ) : friendsIdList.includes(userData.userId + currentUserData.uid) ||
-          friendsIdList.includes(currentUserData.uid + userData.userId) ? (
+        ) : friendsIdList?.includes(userData.userId + currentUserData.uid) ||
+          friendsIdList?.includes(currentUserData.uid + userData.userId) ? (
           <p className="mt-2 select-none rounded-md text-center font-medium text-slate-400">
             Friend
           </p>
-        ) : blockedIdList.blockedById.includes(userData.userId) ? (
+        ) : blockedIdList.blockedById?.includes(userData.userId) ? (
           <p className="mt-2 select-none rounded-md text-center font-medium text-slate-400">
             User is blocked
           </p>
-        ) : blockedIdList.blockedId.includes(userData.userId) ? (
+        ) : blockedIdList.blockedId?.includes(userData.userId) ? (
           <p className="mt-2 select-none rounded-md text-center font-medium text-slate-400">
             You are blocked
           </p>

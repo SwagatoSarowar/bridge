@@ -42,15 +42,15 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="bg-forgotpassword-img flex h-screen items-center justify-center bg-cover bg-center bg-no-repeat">
+    <div className="flex h-screen items-center justify-center bg-forgotpassword-img bg-cover bg-center bg-no-repeat">
       <ToastContainer autoClose={1500} position="top-center" />
-      <div className="rounded-lg bg-black/30 p-16 shadow-[16px_16px_20px_0_rgba(0,0,0,0.4)] backdrop-blur-lg">
-        <h1 className="mb-5 text-center text-4xl font-light uppercase text-white">
+      <div className="max-h-screen overflow-y-auto rounded-lg bg-black/30 p-4 shadow-[16px_16px_20px_0_rgba(0,0,0,0.4)] backdrop-blur-lg md:p-16">
+        <h1 className="mb-5 text-center text-3xl font-light uppercase text-white md:text-4xl">
           Reset Password
         </h1>
         <form
           noValidate
-          className="flex w-[350px] flex-col gap-y-10"
+          className="flex flex-col gap-y-3 md:w-[350px] md:gap-y-10"
           onSubmit={(e) => handleResetPassword(e)}
         >
           <div>
@@ -65,19 +65,21 @@ export default function ForgotPassword() {
                 setError("");
               }}
             />
-            <p className="mt-1 h-[1rem] font-medium text-white">{error}</p>
+            <p className="mt-1 h-[1rem] text-sm font-medium text-white md:text-base">
+              {error}
+            </p>
           </div>
           <div className="flex flex-col gap-y-4">
             <button
               type="submit"
-              className="rounded-full bg-blue-500 py-3 text-lg font-medium text-white duration-200 hover:bg-blue-600"
+              className="rounded-full bg-blue-500 py-2 font-medium text-white duration-200 hover:bg-blue-600 md:py-3 md:text-lg"
             >
               Reset Password
             </button>
             <button
               onClick={() => navigate("/login")}
               type="button"
-              className="rounded-full bg-red-500 py-3 text-lg font-medium text-white duration-200 hover:bg-red-600"
+              className="rounded-full bg-red-500 py-2 font-medium text-white duration-200 hover:bg-red-600 md:py-3 md:text-lg"
             >
               Back to Login
             </button>

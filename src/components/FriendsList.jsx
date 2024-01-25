@@ -53,6 +53,12 @@ function Friend({ data, currentUserData }) {
     friendData.img = data.senderImg;
   }
 
+  const handleUnfriend = function () {
+    if (confirm(`Do you want to unfriend ${friendData.name} ?`)) {
+      remove(ref(db, "friends/" + data.id));
+    }
+  };
+
   const handleBlock = function () {
     if (confirm(`Do you want to block ${friendData.name} ?`)) {
       push(ref(db, "block/"), {
@@ -75,6 +81,12 @@ function Friend({ data, currentUserData }) {
       <div className="flex flex-col items-start gap-y-3 px-3 pb-5 pt-3 sm:items-stretch">
         <h4 className="text-center text-xl font-semibold">{friendData.name}</h4>
         <div className="flex gap-x-2 gap-y-2 sm:flex-col">
+          <button
+            className="block rounded-md bg-dark-200 px-4 py-2.5 text-lg font-medium leading-none duration-150 hover:bg-dark-100 sm:px-0"
+            onClick={handleUnfriend}
+          >
+            Unfriend
+          </button>
           <button
             className="block rounded-md bg-red-700 px-4 py-2.5 text-lg font-medium leading-none duration-150 hover:bg-red-800 sm:px-0"
             onClick={handleBlock}

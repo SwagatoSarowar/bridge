@@ -20,8 +20,6 @@ export default function FriendReqsList() {
     });
   }, [currentUserData.uid, db]);
 
-  console.log(requestList);
-
   return (
     <div>
       {requestList.length ? (
