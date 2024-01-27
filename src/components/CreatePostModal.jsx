@@ -46,6 +46,9 @@ function CreatePostModal({ onShowCreatePostModal }) {
         creatorId: currentUserData.uid,
         creatorName: currentUserData.displayName,
         creatorImg: currentUserData.photoURL,
+        time: `${new Date().getFullYear()} ${
+          new Date().getMonth() + 1
+        } ${new Date().getDate()} ${new Date().getHours()} ${new Date().getMinutes()}`,
       }).then(() => onShowCreatePostModal(false));
     } else {
       const uuid = uuidv4();
@@ -59,6 +62,9 @@ function CreatePostModal({ onShowCreatePostModal }) {
                 creatorId: currentUserData.uid,
                 creatorName: currentUserData.displayName,
                 creatorImg: currentUserData.photoURL,
+                time: `${new Date().getFullYear()} ${
+                  new Date().getMonth() + 1
+                } ${new Date().getDate()} ${new Date().getHours()} ${new Date().getMinutes()}`,
               });
             },
           );

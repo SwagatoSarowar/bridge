@@ -1,6 +1,7 @@
 import { getDatabase, ref, remove } from "firebase/database";
 import { ImBin } from "react-icons/im";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 function Posts({ data, deleteBtn = false, friendsIdList = null }) {
   const db = getDatabase();
@@ -12,6 +13,8 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
       remove(ref(db, "posts/" + data.id));
     }
   };
+
+  console.log(moment(data.time, "YYYY MM DD hour minutes").fromNow());
 
   return (
     <>
@@ -31,7 +34,10 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
               <div>
                 <h3 className="font-medium sm:text-lg">{data.creatorName}</h3>
                 <p className="text-[10px] font-light sm:text-xs">
-                  11 November, 2022
+                  {moment(data.time, "YYYY MM DD hour minutes").fromNow() ===
+                  "a minute ago"
+                    ? "Just now"
+                    : moment(data.time, "YYYY MM DD hour minutes").fromNow()}
                 </p>
               </div>
             </div>
