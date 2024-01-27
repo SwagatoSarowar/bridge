@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getDatabase, onValue, push, ref } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 export default function UsersList() {
   const db = getDatabase();
@@ -91,6 +92,7 @@ function User({
   blockedIdList,
 }) {
   const db = getDatabase();
+  const navigate = useNavigate();
 
   const handleAddFriend = function () {
     push(ref(db, "friendReqs/"), {
@@ -107,13 +109,17 @@ function User({
     <div className="flex gap-x-10 overflow-hidden rounded-lg border border-white/30 min-[500px]:mx-20 sm:mx-0 sm:block">
       <picture>
         <img
-          className="aspect-square w-[125px] sm:w-full"
+          className="aspect-square w-[125px] cursor-pointer sm:w-full"
           src={userData.profileImg}
           alt={`${userData.username} profile image`}
+          onClick={() => navigate(`/${userData.userId}`)}
         />
       </picture>
       <div className="flex flex-col items-start gap-y-3 px-3 pb-5 pt-3 sm:items-stretch">
-        <h4 className="text-center text-xl font-semibold">
+        <h4
+          className="cursor-pointer text-center text-xl font-semibold"
+          onClick={() => navigate(`/${userData.userId}`)}
+        >
           {userData.username}
         </h4>
         {friendReqsIdList?.includes(currentUserData.uid + userData.userId) ? (

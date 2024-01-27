@@ -2,9 +2,12 @@ import { getDatabase, ref, remove } from "firebase/database";
 import { ImBin } from "react-icons/im";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import ModalImage from "react-modal-image";
+import { useNavigate } from "react-router-dom";
 
 function Posts({ data, deleteBtn = false, friendsIdList = null }) {
   const db = getDatabase();
+  const navigate = useNavigate();
 
   const currentUserData = useSelector((state) => state.user.userInfo);
 
@@ -13,8 +16,6 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
       remove(ref(db, "posts/" + data.id));
     }
   };
-
-  console.log(moment(data.time, "YYYY MM DD hour minutes").fromNow());
 
   return (
     <>
@@ -26,13 +27,19 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
             <div className="flex gap-x-5">
               <picture>
                 <img
-                  className="w-10 rounded-full sm:w-12"
+                  className="w-10 cursor-pointer rounded-full sm:w-12"
                   src={data?.creatorImg}
                   alt="profile picture"
+                  onClick={() => navigate(`/${data.creatorId}`)}
                 />
               </picture>
               <div>
-                <h3 className="font-medium sm:text-lg">{data.creatorName}</h3>
+                <h3
+                  className="cursor-pointer font-medium sm:text-lg"
+                  onClick={() => navigate(`/${data.creatorId}`)}
+                >
+                  {data.creatorName}
+                </h3>
                 <p className="text-[10px] font-light sm:text-xs">
                   {moment(data.time, "YYYY MM DD hour minutes").fromNow() ===
                   "a minute ago"
@@ -56,10 +63,11 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
                 {data.status ? data.status : null}
               </p>
               <picture>
-                <img
+                <ModalImage
                   className="w-full"
-                  src={data.postedImg}
-                  alt="psted image"
+                  small={data.postedImg}
+                  large={data.postedImg}
+                  alt="Posted Image"
                 />
               </picture>
             </div>

@@ -31,7 +31,7 @@ export default function Navbar() {
           ))}
         </ul>
         <div className="relative">
-          <Link to="/profile" className="peer block">
+          <Link to={`/${currentUserData.uid}`} className="peer block">
             <picture>
               <img
                 className="w-10 rounded-full md:w-12"
