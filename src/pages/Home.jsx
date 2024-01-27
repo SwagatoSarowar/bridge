@@ -50,7 +50,7 @@ export default function Home() {
     onValue(ref(db, "posts/"), (snapshot) => {
       const tempArr = [];
       snapshot.forEach((item) => {
-        tempArr.push(item.val());
+        tempArr.unshift({ ...item.val(), id: item.key });
       });
       setPosts(tempArr);
     });

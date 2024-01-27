@@ -1,5 +1,7 @@
-import { getDatabase, ref, remove } from "firebase/database";
+import { getDatabase, ref, remove, set } from "firebase/database";
 import { ImBin } from "react-icons/im";
+import { FaRegHeart, FaHeart } from "react-icons/fa6";
+import { FaRegComment } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import moment from "moment";
 import ModalImage from "react-modal-image";
@@ -10,6 +12,16 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
   const navigate = useNavigate();
 
   const currentUserData = useSelector((state) => state.user.userInfo);
+
+  const handleReact = function () {
+    set(ref(db, "posts/" + data.id + "/reactions/" + currentUserData.uid), {
+      reactorName: currentUserData.displayName,
+    });
+  };
+
+  const handleRemoveReact = function () {
+    remove(ref(db, "posts/" + data.id + "/reactions/" + currentUserData.uid));
+  };
 
   const handleDeletePost = function () {
     if (confirm("The post will be permanently deleted. Are you sure ?")) {
@@ -42,7 +54,9 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
                 </h3>
                 <p className="text-[10px] font-light sm:text-xs">
                   {moment(data.time, "YYYY MM DD hour minutes").fromNow() ===
-                  "a minute ago"
+                    "a minute ago" ||
+                  moment(data.time, "YYYY MM DD hour minutes").fromNow() ===
+                    "a few seconds ago"
                     ? "Just now"
                     : moment(data.time, "YYYY MM DD hour minutes").fromNow()}
                 </p>
@@ -76,6 +90,37 @@ function Posts({ data, deleteBtn = false, friendsIdList = null }) {
               {data.status}
             </p>
           )}
+          <div className="mx-2 mb-1 mt-4 flex h-5 justify-between text-xs font-light text-white sm:mx-5 sm:mb-2 sm:text-sm">
+            <p>
+              {data.reactions
+                ? `${Object.keys(data.reactions).length} likes`
+                : null}
+            </p>
+            <p>3 comments</p>
+          </div>
+          <div className="grid grid-cols-2 gap-x-4 border-t border-white/20 pt-2 text-sm font-semibold text-light-400 sm:text-base md:text-lg [&>*]:flex [&>*]:grow [&>*]:items-center [&>*]:justify-center [&>*]:gap-x-4 [&>*]:rounded-md [&>*]:py-2 [&>*]:duration-150 hover:[&>*]:bg-dark-200/40">
+            {data.reactions?.[currentUserData.uid] ? (
+              <button className="text-green-500" onClick={handleRemoveReact}>
+                <span className="text-lg sm:text-xl md:text-2xl">
+                  <FaHeart />
+                </span>
+                Love
+              </button>
+            ) : (
+              <button onClick={handleReact}>
+                <span className="text-lg sm:text-xl md:text-2xl">
+                  <FaRegHeart />
+                </span>
+                Love
+              </button>
+            )}
+            <button>
+              <span className="text-lg sm:text-xl md:text-2xl">
+                <FaRegComment />
+              </span>
+              Comment
+            </button>
+          </div>
         </div>
       ) : null}
     </>

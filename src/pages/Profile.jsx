@@ -66,13 +66,11 @@ function Profile() {
       const tempArr = [];
       snapshot.forEach((item) => {
         userId === item.val().creatorId &&
-          tempArr.push({ ...item.val(), id: item.key });
+          tempArr.unshift({ ...item.val(), id: item.key });
       });
       setUserPosts(tempArr);
     });
   }, [db, userId]);
-
-  console.log(userData);
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -90,7 +88,7 @@ function Profile() {
       {currentUserData && (
         <div className="min-h-screen bg-dark-400 pb-20">
           <Navbar />
-          <div className="bg-gradient-to-b from-dark-200 to-dark-300">
+          <div className="bg-gradient-to-b from-green-950 to-dark-300">
             <MainContainer>
               <div className="aspect-[2.5] overflow-hidden rounded-bl-xl rounded-br-xl bg-dark-200">
                 {isLoading ? (
@@ -115,9 +113,9 @@ function Profile() {
                     />
                   </picture>
                 </div>
-                <div className="mb-8 flex flex-col gap-y-6 text-center md:hidden">
+                <div className="mb-8 mt-4 flex flex-col gap-y-6 pb-6 text-center md:hidden">
                   <div>
-                    <h2 className="text-2xl text-white">
+                    <h2 className="mb-2 text-2xl font-medium text-white">
                       {userData?.username}
                     </h2>
                     <p className="text-slate-200">
@@ -145,9 +143,9 @@ function Profile() {
                     </div>
                   )}
                 </div>
-                <div className="mt-3 hidden w-full justify-between md:flex">
+                <div className="mt-3 hidden w-full justify-between pb-8 md:flex">
                   <div>
-                    <h2 className="text-3xl text-white lg:text-5xl">
+                    <h2 className="text-3xl font-semibold text-white lg:text-5xl">
                       {userData.username}
                     </h2>
                     <p className="text-lg text-slate-200">
@@ -157,7 +155,7 @@ function Profile() {
                     </p>
                   </div>
                   {currentUserData.uid === userId && (
-                    <div className="mb-4 flex gap-x-4 self-center">
+                    <div className="flex gap-x-4 self-center">
                       <button
                         className="flex items-center gap-x-1 rounded-lg bg-green-600 px-4 py-2 text-lg font-semibold text-white duration-150 hover:bg-green-700"
                         onClick={() => setShowEditProfile(true)}
@@ -180,12 +178,15 @@ function Profile() {
           </div>
           <div className="mt-3 sm:mt-5">
             <MainContainer>
-              <div className="rounded-md bg-dark-300 p-5 shadow-[5px_5px_10px_0_rgba(0,0,0,0.2)]">
-                <PostInputField
-                  profileImg={userData?.username}
-                  onShowCreatePostModal={setShowCreatePostModal}
-                />
-              </div>
+              {currentUserData.uid === userId && (
+                <div className="rounded-md bg-dark-300 p-5 shadow-[5px_5px_10px_0_rgba(0,0,0,0.2)]">
+                  <PostInputField
+                    profileImg={userData?.profileImg}
+                    onShowCreatePostModal={setShowCreatePostModal}
+                  />
+                </div>
+              )}
+
               <div className="mt-3 flex flex-col gap-y-3 sm:mt-5 sm:gap-y-5">
                 {userPosts.map((item, index) => (
                   <Posts
