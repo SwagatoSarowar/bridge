@@ -7,11 +7,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { userLoginInfo } from "../slices/userSlice";
 import { Flip, ToastContainer, toast } from "react-toastify";
-import { getDatabase, onValue, ref } from "firebase/database";
 
 export default function Login() {
   const auth = getAuth();
-  const db = getDatabase();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -49,7 +47,7 @@ export default function Login() {
         .then((userCredential) => {
           dispatch(userLoginInfo(userCredential.user));
           localStorage.setItem(
-            "userLoginInfo",
+            "bridgeAppUserLoginInfo",
             JSON.stringify(userCredential.user),
           );
           navigate("/");

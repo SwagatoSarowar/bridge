@@ -32,7 +32,7 @@ function Profile() {
 
   const handleLogout = function () {
     if (confirm("Do you want to log out ?")) {
-      localStorage.removeItem("userLoginInfo");
+      localStorage.removeItem("bridgeAppUserLoginInfo");
       dispatch(userLoginInfo(null));
       window.location.reload(true);
       navigate("/login");

@@ -28,7 +28,7 @@ function ProfileNameEdit({ profileName, onShowNameEdit }) {
       .then(() => {
         dispatch(userLoginInfo({ ...currentUserData, displayName: nameInput }));
         localStorage.setItem(
-          "userLoginInfo",
+          "bridgeAppUserLoginInfo",
           JSON.stringify({ ...currentUserData, displayName: nameInput }),
         );
         onShowNameEdit(false);

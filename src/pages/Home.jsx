@@ -32,7 +32,7 @@ export default function Home() {
     onAuthStateChanged(auth, (user) => {
       setVerified(user?.emailVerified);
       dispatch(() => userLoginInfo(user));
-      localStorage.setItem("userLoginInfo", JSON.stringify(user));
+      localStorage.setItem("bridgeAppUserLoginInfo", JSON.stringify(user));
     });
   }, []);
 

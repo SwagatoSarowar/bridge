@@ -65,7 +65,7 @@ function ProfileImgEdit({ onShowProfileImgEdit }) {
                   }),
                 );
                 localStorage.setItem(
-                  "userLoginInfo",
+                  "bridgeAppUserLoginInfo",
                   JSON.stringify({
                     ...currentUserData,
                     photoURL: downloadURL,
