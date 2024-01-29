@@ -34,7 +34,7 @@ export default function Home() {
       dispatch(() => userLoginInfo(user));
       localStorage.setItem("userLoginInfo", JSON.stringify(user));
     });
-  }, [auth, dispatch]);
+  }, []);
 
   useEffect(() => {
     onValue(ref(db, "friends/"), (snapshot) => {
