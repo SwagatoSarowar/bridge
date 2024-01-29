@@ -74,8 +74,8 @@ function CreatePostModal({ onShowCreatePostModal }) {
   };
 
   return (
-    <div className="absolute left-0 top-0 flex h-screen w-full items-center justify-center overflow-y-scroll bg-black/70 backdrop-blur-sm">
-      <div className="mx-auto max-h-[500px] overflow-x-auto rounded-md border border-white/20 bg-dark-400 py-5 md:w-[600px]">
+    <div className="fixed left-0 top-0 flex h-screen w-full items-center justify-center overflow-y-scroll bg-black/70 backdrop-blur-sm">
+      <div className="mx-auto max-h-screen overflow-x-auto rounded-md border border-white/20 bg-dark-400 py-5 md:w-[600px]">
         <div className="relative border-b border-white/20 pb-6 pt-2 text-white">
           <h3 className="text-center text-2xl font-medium">Create Post</h3>
           <button

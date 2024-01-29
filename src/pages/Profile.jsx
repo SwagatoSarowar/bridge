@@ -40,7 +40,19 @@ function Profile() {
 
   useEffect(() => {
     !currentUserData && navigate("/login");
+
+    onValue(ref(db, "users/"), (snapshot) => {
+      !Object.keys(snapshot.val()).includes(userId) && navigate("/error-page");
+    });
   });
+
+  useEffect(() => {
+    setIsLoading(true);
+    onValue(ref(db, "users/" + userId), (snapshot) => {
+      setUserData(snapshot.val());
+      setIsLoading(false);
+    });
+  }, [userId, db]);
 
   useEffect(() => {
     onValue(ref(db, "friends/"), (snapshot) => {
@@ -52,14 +64,6 @@ function Profile() {
       setFriendsCount(tempArr.length);
     });
   });
-
-  useEffect(() => {
-    setIsLoading(true);
-    onValue(ref(db, "users/" + userId), (snapshot) => {
-      setUserData(snapshot.val());
-      setIsLoading(false);
-    });
-  }, [userId, db]);
 
   useEffect(() => {
     onValue(ref(db, "posts/"), (snapshot) => {
@@ -76,7 +80,6 @@ function Profile() {
     const body = document.querySelector("body");
 
     if (showEditProfile || showCreatePostModal) {
-      document.documentElement.scrollTop = 0;
       body.style.overflowY = "hidden";
     } else {
       body.style.overflowY = "auto";
