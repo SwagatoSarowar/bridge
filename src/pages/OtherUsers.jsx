@@ -24,7 +24,7 @@ export default function OtherUsers() {
   return (
     <>
       {currentUserData && (
-        <div className="min-h-screen bg-dark-400 text-light-400">
+        <div className="min-h-screen bg-dark-400 pb-20 text-light-400">
           <Navbar />
           <div className="fixed mb-5 w-full border-b border-white/20 bg-dark-300 py-[6px]">
             <ul className="flex justify-center gap-x-1 text-sm font-medium md:text-base [&>*]:cursor-pointer [&>*]:rounded-md [&>*]:px-2 [&>*]:py-[6px] [&>*]:duration-150 sm:[&>*]:px-5">

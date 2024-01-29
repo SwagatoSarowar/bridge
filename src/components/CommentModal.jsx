@@ -49,27 +49,29 @@ function CommentModal({ postData, commentData, onShowCommentModal }) {
                 <Comment key={index} data={item} />
               ))
             ) : (
-              <div>no comments</div>
+              <div className="py-10 text-center text-2xl font-bold text-white/30">
+                No comments
+              </div>
             )}
           </div>
-          <div className="flex gap-x-4">
+          <div className="flex items-center gap-x-4">
             <img
               className="w-10 rounded-full"
               src={currentUserData.photoURL}
               alt=""
             />
             <form
-              className="group flex w-full gap-x-2 rounded-md bg-dark-200 py-1 pl-3 pr-1 text-xl text-white"
+              className="group flex w-full gap-x-2 rounded-md bg-dark-200 py-1 pl-2 pr-1 text-white sm:pl-3 sm:text-xl"
               onSubmit={handleAddComment}
             >
               <input
-                className=" w-full bg-transparent outline-none"
+                className="w-full bg-transparent py-1 outline-none sm:py-2"
                 type="text"
                 placeholder="Write your comment"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
               />
-              <button className="rounded-md p-2.5 text-green-400 duration-150 hover:bg-dark-100 hover:text-green-500">
+              <button className="rounded-md p-1 text-green-400 duration-150 hover:bg-dark-100 hover:text-green-500 sm:p-2.5">
                 <BsSendFill />
               </button>
             </form>

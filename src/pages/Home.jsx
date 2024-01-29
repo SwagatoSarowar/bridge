@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div>
       {verified ? (
-        <div className="min-h-screen bg-dark-400 text-white">
+        <div className="min-h-screen bg-dark-400 pb-20 text-white">
           <Navbar />
           <div className="mt-3 sm:mt-5">
             <MainContainer>

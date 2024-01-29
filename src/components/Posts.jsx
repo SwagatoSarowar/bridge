@@ -56,7 +56,7 @@ function Posts({ data, deleteBtn = false }) {
 
   return (
     <>
-      <div className="rounded-md bg-dark-300 px-3 py-8 shadow-[5px_5px_10px_0_rgba(0,0,0,0.2)] sm:px-16">
+      <div className="rounded-md bg-dark-300 px-3 pb-4 pt-8 shadow-[5px_5px_10px_0_rgba(0,0,0,0.2)] sm:px-16">
         <div className="flex items-center justify-between text-white">
           <div className="flex gap-x-5">
             <picture>
