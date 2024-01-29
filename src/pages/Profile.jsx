@@ -34,17 +34,19 @@ function Profile() {
     if (confirm("Do you want to log out ?")) {
       localStorage.removeItem("bridgeAppUserLoginInfo");
       dispatch(userLoginInfo(null));
-      window.location.reload(true);
       navigate("/login");
     }
   };
 
   useEffect(() => {
-    !currentUserData && navigate("/login");
-
-    onValue(ref(db, "users/"), (snapshot) => {
-      !Object.keys(snapshot.val()).includes(userId) && navigate("/error-page");
-    });
+    if (!currentUserData) {
+      navigate("/login");
+    } else {
+      onValue(ref(db, "users/"), (snapshot) => {
+        !Object.keys(snapshot.val()).includes(userId) &&
+          navigate("/error-page");
+      });
+    }
   });
 
   useEffect(() => {

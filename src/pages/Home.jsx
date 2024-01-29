@@ -25,15 +25,15 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    !currentUserData && navigate("/login");
-  });
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      setVerified(user?.emailVerified);
-      dispatch(() => userLoginInfo(user));
-      localStorage.setItem("bridgeAppUserLoginInfo", JSON.stringify(user));
-    });
+    if (!currentUserData) {
+      navigate("/login");
+    } else {
+      onAuthStateChanged(auth, (user) => {
+        setVerified(user?.emailVerified);
+        dispatch(() => userLoginInfo(user));
+        localStorage.setItem("bridgeAppUserLoginInfo", JSON.stringify(user));
+      });
+    }
   }, []);
 
   useEffect(() => {
