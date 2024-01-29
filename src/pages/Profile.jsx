@@ -34,6 +34,7 @@ function Profile() {
     if (confirm("Do you want to log out ?")) {
       localStorage.removeItem("userLoginInfo");
       dispatch(userLoginInfo(null));
+      window.location.reload(true);
       navigate("/login");
     }
   };
