@@ -57,7 +57,7 @@ export default function Home() {
       });
       setPosts(tempArr);
     });
-  }, [db, friendsIdList, currentUserData.uid]);
+  }, [db, friendsIdList, currentUserData?.uid]);
 
   useEffect(() => {
     const body = document.querySelector("body");
