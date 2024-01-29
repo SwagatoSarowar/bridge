@@ -50,9 +50,9 @@ export default function Home() {
     onValue(ref(db, "posts/"), (snapshot) => {
       const tempArr = [];
       snapshot.forEach((item) => {
-        (friendsIdList.includes(currentUserData.uid + item.val().creatorId) ||
-          friendsIdList.includes(item.val().creatorId + currentUserData.uid) ||
-          currentUserData.uid === item.val().creatorId) &&
+        (friendsIdList.includes(currentUserData?.uid + item.val().creatorId) ||
+          friendsIdList.includes(item.val().creatorId + currentUserData?.uid) ||
+          currentUserData?.uid === item.val().creatorId) &&
           tempArr.unshift({ ...item.val(), id: item.key });
       });
       setPosts(tempArr);
