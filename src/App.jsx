@@ -38,10 +38,6 @@ function App() {
       path: "/error-page",
       element: <ErrorPage />,
     },
-    {
-      path: "*",
-      element: <ErrorPage />,
-    },
   ]);
   return <RouterProvider router={router} />;
 }
