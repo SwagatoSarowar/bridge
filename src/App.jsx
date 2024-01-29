@@ -13,7 +13,6 @@ function App() {
     {
       path: "/",
       element: <Home />,
-      errorElement: <ErrorPage />,
     },
     {
       path: "/registration",
@@ -37,6 +36,10 @@ function App() {
     },
     {
       path: "/error-page",
+      element: <ErrorPage />,
+    },
+    {
+      path: "*",
       element: <ErrorPage />,
     },
   ]);

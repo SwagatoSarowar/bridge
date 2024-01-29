@@ -15,8 +15,6 @@ export default function OtherUsers() {
 
   const currentUserData = useSelector((state) => state.user.userInfo);
 
-  console.log(currentUserData);
-
   useEffect(() => {
     !currentUserData && navigate("/login");
   });
