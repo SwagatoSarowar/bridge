@@ -102,6 +102,7 @@ function Profile() {
                 ) : (
                   <picture>
                     <ModalImage
+                      className="w-full"
                       small={userData?.coverImg}
                       large={userData?.coverImg}
                       alt="Cover Image"
